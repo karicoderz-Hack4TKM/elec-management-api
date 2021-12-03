@@ -1,5 +1,5 @@
 aniso8601==9.0.1
-cffi==1.14.6
+cffi==1.15.0
 click==7.1.2
 cryptography==3.4.7
 Flask==1.1.2
