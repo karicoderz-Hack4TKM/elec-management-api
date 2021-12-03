@@ -1,0 +1,373 @@
+openapi: 3.0.0
+info:
+  title: Electricity Management APIs
+  version: '1.0'
+  description: Critical APIs for functioning of Electricity Management APIs
+servers:
+  - url: /
+    variables: {}
+
+docExpansion : "none"
+
+components:
+  securitySchemes:
+     API-TOKEN:
+      type: apiKey
+      in: header
+      name: x-access-token
+
+security:
+  - API-TOKEN: []
+
+tags:
+  - name: Authorization
+    description: Auth APIs
+  - name: MDM
+    description: Master Data Management APIs
+
+
+
+
+paths:
+
+
+  /userLogin:
+    summary: User Login Function
+    description: Used for logging the user into the application
+    post:
+      summary: User Login Function
+      operationId: auth-user-login
+      security: []
+      description: >-
+        Takes username & password, logs in the user & is successful, returns a
+        user token, else shows rejection.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: sample@elecmanagement@gmail.com
+                password:
+                  type: string
+                  example: password
+      responses:
+        '200':
+          description: Login Successful
+        '213':
+          description: Failed to decrypt user password from Database
+      tags: [Authorization]
+
+
+  /forgotPassword:
+    summary: User password Recovery
+    description: Used for user password recovery
+    post:
+      summary: User password Recovery
+      operationId: auth-user-recover
+      security: []
+      description: >-
+        Takes username and sends the password recovery email to the user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: abc@xyz.com
+
+      responses:
+        '200':
+          description: Success
+      tags: [Authorization]
+
+  /resetPassword:
+    summary: Reset password Function
+    description: Used for verifying jwt token and reseting user password
+
+    get:
+      summary: Verifies jwt token in password recovery url
+      operationId: auth-user-reset-get
+      description: >-
+        Check whether the user is valid, if so return user_id along with message "valid user", else shows error
+      responses:
+        '200':
+          description: Valid user
+      tags: [Authorization]
+
+    put:
+      summary: Reset password
+      operationId: auth-user-reset-put
+      description: >-
+        Takes id and password and then update the user password
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                _id:
+                  type: string
+                  example: 36b47079-ad71-46f5-891b-7b340b9c3271
+                password:
+                  type: string
+                  example: "12345678"
+      responses:
+        '200':
+          description: User Password Updated
+      tags: [Authorization]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  # User role GET and POST Endpoints
+
+
+  /mdm/userrole:
+    summary: MDM-Userrole
+    description: MDM Modules for Userrole
+
+#GET Method
+
+    get:
+      summary: Get a list of all Userroles
+      operationId: mdm-userrole
+      description: >-
+       This endpoints uses a get request to retrive all Userroles
+      parameters:
+        - name: filter
+          in: query
+          description: Filter Query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Data served
+        '211':
+          description: Not found or bad request
+        '210':
+          description: Failed to connect to Mongo DB
+        '401':
+          description: Unauthorized User
+
+      tags: [MDM]
+
+#POST Method
+
+
+    post:
+      summary: Insert Userrole data
+      operationId: mdm-add-userrole
+      description: >-
+        <h3>This endpoints uses a post request to  Insert all userroles </h3>.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                _id:
+                  type: string
+                  example: RO101
+                name:
+                  type: string
+                  example: Lab-incharge
+                code:
+                  type: string
+                  example: LIN
+
+
+      responses:
+        '201':
+          description: Userrole is created
+        '211':
+          description: Userrole is not inserted
+        '210':
+          description: Failed to connect to Mongo DB
+        '401':
+          description: Unauthorized User
+      tags: [ MDM ]
+
+
+
+# User GET,POST,DELETE,PUT Endpoints added
+
+  /mdm/users:
+    summary: MDM-users
+    description: MDM Modules for users
+
+# GET Method
+    get:
+      summary: Fetch users data.
+      operationId: mdm-users-get
+      description: >-
+        Fetches users data from database.
+      parameters:
+        - name: filter
+          in: query
+          description: Filter Query
+          schema:
+            type: string
+            example: {"email":"elecmanagement@gmail.com"}
+      responses:
+        '200':
+          description: Success
+        '212':
+          description: Not found or bad request
+        '210':
+          description: Failed to connect to Mongo DB
+        '401':
+          description: Unauthorized User
+      tags: [ MDM ]
+
+# POST Method
+
+    post:
+      summary: Insert users data.
+      operationId: mdm-users-post
+      description: >-
+        Inserts users data into database.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: unknown@example.com
+                password:
+                  type: string
+                  example: password
+                username:
+                  type: string
+                  example: New User
+                userRole:
+                  type: string
+                  example: RO101
+                subDepartment:
+                  type: string
+                  example: CA
+      responses:
+        '200':
+          description: User data created
+        '211':
+          description: User data  is not created
+        '212':
+          description: User is already present
+        '213':
+          description: User is not created
+        '210':
+          description: Failed to connect to Mongo DB
+        '401':
+          description: Unauthorized User
+      tags: [ MDM ]
+
+#DELETE Method
+
+    delete:
+      summary: Deletes a user
+      operationId: mdm-users-delete
+      description: >-
+        Deletes user data from database.
+      parameters:
+        - name: filter
+          in: query
+          description: Filter Query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User Delete
+
+        '212':
+          description: User Not Found
+        '213':
+          description: No User Available
+        '211':
+          description: Not found or bad request
+        '210':
+          description: Failed to connect to Mongo DB
+        '401':
+          description: Unauthorized User
+      tags: [ MDM ]
+
+
+#PUT Method
+
+
+    put:
+      summary: Updates users data.
+      operationId: mdm-users-put
+      description: >-
+        Updates users data into database.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                _id:
+                  type: string
+                  example: 86f402d9-fd3a-40ca-82ea-214d816d1124
+                email:
+                  type: string
+                  example: unknown@example.com
+                password:
+                  type: string
+                  example: password
+                username:
+                  type: string
+                  example: New User
+                userRole:
+                  type: string
+                  example: RO101
+                subDepartment:
+                  type: string
+                  example: CA
+      responses:
+        '200':
+          description: User Data Updated
+
+        '211':
+          description: User Data Not Updated
+        '212':
+          description: User Not Found
+        '213':
+          description: Not found or bad request
+        '210':
+          description: Failed to connect to Mongo DB
+        '401':
+          description: Unauthorized User
+
+      tags: [ MDM ]
+
+
+
+
+
+
+
+
+
+
