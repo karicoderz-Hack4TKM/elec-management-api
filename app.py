@@ -49,7 +49,14 @@ api.add_resource(user.Users,'/core/users')
 import resources.core.tariff as tariff
 api.add_resource(tariff.Tariff,'/core/tariff')
 
+#consumption
+import resources.core.consumption as consumption
+api.add_resource(consumption.Consumption,'/core/consumption')
 
+
+#production
+import resources.core.production as production
+api.add_resource(production.Production,'/core/production')
 
 if __name__ == '__main__':
     app.run()

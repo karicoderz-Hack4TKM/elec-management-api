@@ -335,6 +335,58 @@ paths:
           description: Failed to connect to Mongo DB
       tags: [ CORE ]
 
+  /core/consumption:
+    summary: Core Consumption
+    description: Core Modules for Consumption
+
+    # GET Method
+    get:
+      summary: Fetch users data.
+      operationId: core-users-get
+      description: >-
+        Fetches consumption data from database.
+      parameters:
+        - name: filter
+          in: query
+          description: Filter Query
+          schema:
+            type: string
+            example: {"userid": "HP01" }
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Not found or bad request
+        '500':
+          description: Failed to connect to Mongo DB
+      tags: [ CORE ]
+
+  /core/production:
+    summary: Core Production
+    description: Core Modules for Production
+
+    # GET Method
+    get:
+      summary: Fetch users data.
+      operationId: core-users-get
+      description: >-
+        Fetches prouction data from database.
+      parameters:
+        - name: filter
+          in: query
+          description: Filter Query
+          schema:
+            type: string
+            example: { "userid": "HP01" }
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Not found or bad request
+        '500':
+          description: Failed to connect to Mongo DB
+      tags: [ CORE ]
+
 
 ##DELETE Method
 #

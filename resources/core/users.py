@@ -39,6 +39,7 @@ class Users(Resource):
                 return {"code": 210, "message": "Failed to connect to Mongo DB : " + str(e)}, 500
 
     def get(self, **tokenData):
+        y = tokenData['userDetails']
         try:
             connect = pymongo.MongoClient(current_app.config["MONGO_URL"])
             selectDb = connect[current_app.config["DB_NAME"]]
