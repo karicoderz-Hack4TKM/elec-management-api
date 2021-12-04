@@ -517,13 +517,12 @@ paths:
                   example: permanant data
                 userid:
                   type: string
-                  example: { "userid": "HP01" }
+                  example: HP01
                 start_date:
                   type: string
-                  example: 09-09-1998
                 end_date:
-                    type: string
-                    example: 09-10-1998
+                  type: string
+
 
       responses:
         '200':
