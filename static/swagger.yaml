@@ -564,7 +564,37 @@ paths:
 
       tags: [ CORE ]
 
+  # POST Method
+    post:
+          summary: Insert providers data.
+          operationId: core-providers-post
+          description: >-
+            Inserts provider data into database.
+          requestBody:
+            required: true
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                      example: admin@gmail.com
+                    password:
+                      type: string
+                      example: password
+                    usertype:
+                      type: string
+                      example: admin
+          responses:
+            '200':
+              description: User data created
+            '201':
+              description: User data  is not create
+            '500':
+              description: Failed to connect to Mongo DB
 
+          tags: [ CORE ]
 
 
 
