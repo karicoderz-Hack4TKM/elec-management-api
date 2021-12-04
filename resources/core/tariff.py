@@ -8,7 +8,7 @@ import common.auth.token_utils as auth
 class Tariff(Resource):
     @auth.verifyToken
     def post(self, **tokenData):
-        y = tokenData['userDetails']
+
         try:
             connect = pymongo.MongoClient(current_app.config["MONGO_URL"])
             selectDb = connect[current_app.config["DB_NAME"]]
@@ -27,7 +27,7 @@ class Tariff(Resource):
 
     @auth.verifyToken
     def get(self, **tokenData):
-        y = tokenData['userDetails']
+
         try:
             connect = pymongo.MongoClient(current_app.config["MONGO_URL"])
             selectDb = connect[current_app.config["DB_NAME"]]
