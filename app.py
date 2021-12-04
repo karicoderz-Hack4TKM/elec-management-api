@@ -58,5 +58,9 @@ api.add_resource(consumption.Consumption,'/core/consumption')
 import resources.core.production as production
 api.add_resource(production.Production,'/core/production')
 
+#excess
+import resources.core.execess as excess
+api.add_resource(excess.Excess,'/core/excess')
+
 if __name__ == '__main__':
     app.run()

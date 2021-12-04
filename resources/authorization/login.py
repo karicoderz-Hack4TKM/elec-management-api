@@ -32,12 +32,17 @@ class UserLogin(Resource):
 
                 if decPassword == password:
                     data = requiredUserData
-                    data["_id"] = str(data["_id"])
-                    del data["password"]
-                    token = jwt.encode({"data": data, 'exp': datetime.datetime.utcnow() + datetime.timedelta(
+                    pr = {
+                        "_id": data["_id"],
+                        "email": data["email"],
+                        "password": data["password"],
+                        "lanenumber": data["lanenumber"],
+                        "usertype": data["usertype"]
+                    }
+
+                    token = jwt.encode({"data": pr, 'exp': datetime.datetime.utcnow() + datetime.timedelta(
                         minutes=current_app.config["TOKEN_EXPIRY"])}, current_app.config["SECRET_KEY"])
-                    data["token"] = token
-                    return {"code": "200", "message": "Congrats! Access granted", "data": data}
+                    return {"code": "200", "message": "Congrats! Access granted", "token": token, "data": pr}
                 else:
                     return {"code": "211", "message": "Incorrect Password!"}
             else:

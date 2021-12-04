@@ -31,7 +31,7 @@ class Tariff(Resource):
         try:
             connect = pymongo.MongoClient(current_app.config["MONGO_URL"])
             selectDb = connect[current_app.config["DB_NAME"]]
-            selectCollection = selectDb["user_roles"]
+            selectCollection = selectDb["tariff"]
             try:
                 data = request.args.get("filter")
                 if data is None:
@@ -50,3 +50,29 @@ class Tariff(Resource):
 
         except Exception as e:
             return {"code": 210, "message": "Failed to connect to Mongo DB : " + str(e)},210
+
+    @auth.verifyToken
+    def delete(self, **tokenData):
+        y = tokenData['userDetails']
+        try:
+            connect = pymongo.MongoClient(current_app.config["MONGO_URL"])
+            selectDb = connect[current_app.config["DB_NAME"]]
+            selectCollection = selectDb["tariff"]
+            try:
+                filterData = request.args.get("filter")
+                filterData = json.loads(filterData)
+                selDoc = selectCollection.find_one(filterData)
+                if not (selDoc is None):
+                        SubDelete = selectCollection.delete_one(filterData)
+                        connect.close()
+                        if SubDelete.deleted_count:
+                            return {"code": 200, "message": "Tariff Deleted"}, 200
+                        else:
+                            return {"code": 212, "message": "Tariff Not Deleted"}, 212
+                else:
+                    return {"code": 214, "message": "Subdeparment Not Found"}, 404
+            except Exception as e:
+                    return {"code": 211, "message": "Not found or bad request : " + str(e)}, 401
+
+        except Exception as e:
+                return {"code": 210, "message": "Failed to connect to Mongo DB : " + str(e)}, 500

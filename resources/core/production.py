@@ -17,7 +17,7 @@ class Production(Resource):
     @auth.verifyToken
     def get(self, **tokenData):
         global addon2
-        y = tokenData['userDetails']
+        # y = tokenData['userDetails']
         try:
                 connect = pymongo.MongoClient(current_app.config["MONGO_URL"])
                 selectDb = connect[current_app.config["DB_NAME"]]
