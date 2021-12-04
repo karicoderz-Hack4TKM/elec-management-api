@@ -14,15 +14,12 @@ class MdmUserRoles(Resource):
                 connect = pymongo.MongoClient(current_app.config["MONGO_URL"])
                 selectDb = connect[current_app.config["DB_NAME"]]
                 selectCollection = selectDb["user_roles"]
-
                 try:
                     data = request.get_json()
                     y = selectCollection.insert_one(data)
                     connect.close()
                     if y.inserted_id:
                         return {"codee": 201, "message": "Userrole is Successfully Created"},201
-
-
                 except Exception as e:
                     return {"code": 211, "message": "Userrole is not inserted : " + str(e)},211
             except Exception as e:

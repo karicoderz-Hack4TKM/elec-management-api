@@ -27,7 +27,7 @@ class Excess(Resource):
 
                 "type": data["type"],
                 "reason": data["reason"],
-                "status": data["status"],
+                "userid":data["userid"],
                 "start_date":time.TimeConverter.dateStringtoISOformat(self,data['start_date']),
                 "end_date": time.TimeConverter.dateStringtoISOformat(self,data['end_date'])
 

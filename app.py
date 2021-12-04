@@ -62,5 +62,9 @@ api.add_resource(production.Production,'/core/production')
 import resources.core.execess as excess
 api.add_resource(excess.Excess,'/core/excess')
 
+#providers
+import resources.core.providers as providers
+api.add_resource(providers.Providers,'/core/providers')
+
 if __name__ == '__main__':
     app.run()
