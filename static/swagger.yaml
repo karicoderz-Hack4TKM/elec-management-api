@@ -206,9 +206,78 @@ paths:
           description: Unauthorized User
       tags: [ CORE ]
 
+# generator
+
+    /core/users:
+      summary: MDM-generator
+      description: MDM Modules for users
+
+      # GET Method
+      get:
+        summary: Fetch generator details
+        operationId: core-generator-get
+        description: >-
+          Fetches generator data from database.
+        parameters:
+          - name: filter
+            in: query
+            description: Filter Query
+            schema:
+              type: string
+              example: { "_id": "GE01" }
+        responses:
+          '200':
+            description: Success
+          '400':
+            description: Not found or bad request
+          '500':
+            description: Failed to connect to Mongo DB
+
+        tags: [ CORE ]
+
+      # Put Method
+
+      put:
+        summary: .
+        operationId: core-generators-put
+        description: >-
+          update generator details
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                    example: GE01
+                  maxicap:
+                    type: integer
+                    example: password
+                  totaltime:
+                    type: integer
+                    example: 101
+                  startTime:
+                    type: string
+                    example: 19-08-08
+                  endTime:
+                    type: string
+                    example: 23-09-w0
+        responses:
+          '200':
+            description: update generator data
+          '201':
+            description: data  is not updated
+          '500':
+            description: Failed to connect to Mongo DB
+
+        tags: [ CORE ]
 
 
-# User GET,POST,DELETE,PUT Endpoints added
+
+
+  # User GET,POST,DELETE,PUT Endpoints added
 
   /core/users:
     summary: MDM-users

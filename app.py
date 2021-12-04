@@ -53,6 +53,9 @@ api.add_resource(tariff.Tariff,'/core/tariff')
 import resources.core.consumption as consumption
 api.add_resource(consumption.Consumption,'/core/consumption')
 
+#generators
+import resources.core.generator as generator
+api.add_resource(generator.Produce , '/core/generator')
 
 #production
 import resources.core.production as production
