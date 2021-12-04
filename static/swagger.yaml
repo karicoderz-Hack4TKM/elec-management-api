@@ -273,6 +273,69 @@ paths:
 
       tags: [ CORE ]
 
+
+# User GET,POST,DELETE,PUT Endpoints added
+
+  /core/tariff:
+    summary: Core Tariff
+    description: Core Modules for tariff
+
+# GET Method
+    get:
+      summary: Fetch users data.
+      operationId: core-users-get
+      description: >-
+        Fetches tariff data from database.
+      parameters:
+        - name: filter
+          in: query
+          description: Filter Query
+          schema:
+            type: string
+            example: {"type":"domestic"}
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Not found or bad request
+        '500':
+          description: Failed to connect to Mongo DB
+      tags: [ CORE ]
+
+# POST Method
+
+    post:
+      summary: Insert tariff data.
+      operationId: core-tariff-post
+      description: >-
+        Inserts tariff data into database.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                  example: domestic
+                threshold:
+                  type: int
+                  example: 250
+                price:
+                  type: int
+                  example: 5
+
+      responses:
+        '200':
+          description: User data created
+        '201':
+          description: User data  is not create
+        '500':
+          description: Failed to connect to Mongo DB
+      tags: [ CORE ]
+
+
 ##DELETE Method
 #
 #    delete:
