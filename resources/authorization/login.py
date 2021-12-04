@@ -18,7 +18,7 @@ class UserLogin(Resource):
             connect = pymongo.MongoClient(current_app.config["MONGO_URL"])
             selectDb = connect[current_app.config["DB_NAME"]]
             selectCollection = selectDb["users"]
-            requiredUserData = selectCollection.find_one({"email": email},{"createdOn":0,"updatedOn":0})
+            requiredUserData = selectCollection.find_one({"email": email})
             connect.close()
 
             if (requiredUserData != None):

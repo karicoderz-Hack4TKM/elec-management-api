@@ -50,7 +50,7 @@ paths:
               properties:
                 email:
                   type: string
-                  example: sample@elecmanagement@gmail.com
+                  example: elec@gmail.com
                 password:
                   type: string
                   example: password
@@ -148,7 +148,7 @@ paths:
 
     get:
       summary: Get a list of all Userroles
-      operationId: mdm-userrole
+      operationId: core-userrole
       description: >-
        This endpoints uses a get request to retrive all Userroles
       parameters:
@@ -174,7 +174,7 @@ paths:
 
     post:
       summary: Insert Userrole data
-      operationId: mdm-add-userrole
+      operationId: core-add-userrole
       description: >-
         <h3>This endpoints uses a post request to  Insert all userroles </h3>.
       requestBody:
@@ -204,20 +204,20 @@ paths:
           description: Failed to connect to Mongo DB
         '401':
           description: Unauthorized User
-      tags: [ MDM ]
+      tags: [ CORE ]
 
 
 
 # User GET,POST,DELETE,PUT Endpoints added
 
-  /mdm/users:
+  /core/users:
     summary: MDM-users
     description: MDM Modules for users
 
 # GET Method
     get:
       summary: Fetch users data.
-      operationId: mdm-users-get
+      operationId: core-users-get
       description: >-
         Fetches users data from database.
       parameters:
@@ -226,23 +226,22 @@ paths:
           description: Filter Query
           schema:
             type: string
-            example: {"email":"elecmanagement@gmail.com"}
+            example: {"email":"elec@gmail.com"}
       responses:
         '200':
           description: Success
-        '212':
+        '400':
           description: Not found or bad request
-        '210':
+        '500':
           description: Failed to connect to Mongo DB
-        '401':
-          description: Unauthorized User
-      tags: [ MDM ]
+
+      tags: [ CORE ]
 
 # POST Method
 
     post:
       summary: Insert users data.
-      operationId: mdm-users-post
+      operationId: core-users-post
       description: >-
         Inserts users data into database.
       requestBody:
@@ -254,113 +253,106 @@ paths:
               properties:
                 email:
                   type: string
-                  example: unknown@example.com
+                  example: elec@gmail.com
                 password:
                   type: string
                   example: password
-                username:
+                lanenumber:
+                  type: integer
+                  example: 101
+                usertype:
                   type: string
-                  example: New User
-                userRole:
-                  type: string
-                  example: RO101
-                subDepartment:
-                  type: string
-                  example: CA
+                  example: HH
       responses:
         '200':
           description: User data created
-        '211':
-          description: User data  is not created
-        '212':
-          description: User is already present
-        '213':
-          description: User is not created
-        '210':
+        '201':
+          description: User data  is not create
+        '500':
           description: Failed to connect to Mongo DB
-        '401':
-          description: Unauthorized User
-      tags: [ MDM ]
 
-#DELETE Method
+      tags: [ CORE ]
 
-    delete:
-      summary: Deletes a user
-      operationId: mdm-users-delete
-      description: >-
-        Deletes user data from database.
-      parameters:
-        - name: filter
-          in: query
-          description: Filter Query
-          schema:
-            type: string
-      responses:
-        '200':
-          description: User Delete
+##DELETE Method
+#
+#    delete:
+#      summary: Deletes a user
+#      operationId: core-users-delete
+#      description: >-
+#        Deletes user data from database.
+#      parameters:
+#        - name: filter
+#          in: query
+#          description: Filter Query
+#          schema:
+#            type: string
+#      responses:
+#        '200':
+#          description: User Delete
+#
+#        '212':
+#          description: User Not Found
+#        '213':
+#          description: No User Available
+#        '211':
+#          description: Not found or bad request
+#        '210':
+#          description: Failed to connect to Mongo DB
+#        '401':
+#          description: Unauthorized User
+#      tags: [ MDM ]
+#
+#
+##PUT Method
+#
+#
+#    put:
+#      summary: Updates users data.
+#      operationId: core-users-put
+#      description: >-
+#        Updates users data into database.
+#      requestBody:
+#        required: true
+#        content:
+#          application/json:
+#            schema:
+#              type: object
+#              properties:
+#                _id:
+#                  type: string
+#                  example: 86f402d9-fd3a-40ca-82ea-214d816d1124
+#                email:
+#                  type: string
+#                  example: unknown@example.com
+#                password:
+#                  type: string
+#                  example: password
+#                username:
+#                  type: string
+#                  example: New User
+#                userRole:
+#                  type: string
+#                  example: RO101
+#                subDepartment:
+#                  type: string
+#                  example: CA
+#      responses:
+#        '200':
+#          description: User Data Updated
+#
+#        '211':
+#          description: User Data Not Updated
+#        '212':
+#          description: User Not Found
+#        '213':
+#          description: Not found or bad request
+#        '210':
+#          description: Failed to connect to Mongo DB
+#        '401':
+#          description: Unauthorized User
+#
+#      tags: [ MDM ]
 
-        '212':
-          description: User Not Found
-        '213':
-          description: No User Available
-        '211':
-          description: Not found or bad request
-        '210':
-          description: Failed to connect to Mongo DB
-        '401':
-          description: Unauthorized User
-      tags: [ MDM ]
-
-
-#PUT Method
-
-
-    put:
-      summary: Updates users data.
-      operationId: mdm-users-put
-      description: >-
-        Updates users data into database.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                _id:
-                  type: string
-                  example: 86f402d9-fd3a-40ca-82ea-214d816d1124
-                email:
-                  type: string
-                  example: unknown@example.com
-                password:
-                  type: string
-                  example: password
-                username:
-                  type: string
-                  example: New User
-                userRole:
-                  type: string
-                  example: RO101
-                subDepartment:
-                  type: string
-                  example: CA
-      responses:
-        '200':
-          description: User Data Updated
-
-        '211':
-          description: User Data Not Updated
-        '212':
-          description: User Not Found
-        '213':
-          description: Not found or bad request
-        '210':
-          description: Failed to connect to Mongo DB
-        '401':
-          description: Unauthorized User
-
-      tags: [ MDM ]
 
 
 

@@ -43,12 +43,12 @@ api.add_resource(authorization.PasswordReset, "/resetPassword")
 
 
 #userrole
-import resources.mdm.user_roles as user_role
-api.add_resource(user_role.MdmUserRoles,'/mdm/userRoles')
+import resources.core.user_roles as user_role
+api.add_resource(user_role.MdmUserRoles,'/core/userRoles')
 
 #users
-import resources.mdm.users as user
-api.add_resource(user.MdmUsers,'/mdm/users')
+import resources.core.users as user
+api.add_resource(user.Users,'/core/users')
 
 
 

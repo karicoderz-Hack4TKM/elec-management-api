@@ -5,7 +5,7 @@ class Config(object):
     #MONGO_URL = "mongodb://localhost:27017/"
     MONGO_URL = "mongodb+srv://1012hackathon:1012tkmce@cluster0.9tsp4.mongodb.net"
     TOKEN_EXPIRY = 1000
-    DB_NAME = "hackathon"
+    DB_NAME = "hackthon"
     MAIL_TOKEN_EXPIRY = 15
 
     #encryption
