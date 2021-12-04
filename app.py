@@ -38,10 +38,6 @@ api.add_resource(authorization.ForgotUserPassword,"/forgotPassword")
 api.add_resource(authorization.PasswordReset, "/resetPassword")
 
 
-
-
-
-
 #userrole
 import resources.core.user_roles as user_role
 api.add_resource(user_role.MdmUserRoles,'/core/userRoles')
@@ -50,7 +46,8 @@ api.add_resource(user_role.MdmUserRoles,'/core/userRoles')
 import resources.core.users as user
 api.add_resource(user.Users,'/core/users')
 
-
+import resources.core.tariff as tariff
+api.add_resource(tariff.Tariff,'/core/tariff')
 
 
 
