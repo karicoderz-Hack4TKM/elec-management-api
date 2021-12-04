@@ -8,7 +8,6 @@ import json
 
 class Providers(Resource):
     def get(self, **tokenData):
-        y = tokenData['userDetails']
         try:
             connect = pymongo.MongoClient(current_app.config["MONGO_URL"])
             selectDb = connect[current_app.config["DB_NAME"]]
@@ -17,12 +16,12 @@ class Providers(Resource):
             try:
                 data = request.args.get("filter")
                 if data is None:
-                    x = list(selectCollection.find())
+                    x = list(selectCollection.find({},{"_id":0}))
                     connect.close()
                     return {"code": 200, "message": "Data served", "data": x}, 200
                 else:
                     data = json.loads(data)
-                    mydoc = list(selectCollection.find(data))
+                    mydoc = list(selectCollection.find(data,{"_id":0}))
                     connect.close()
                     return {"code": 200, "message": "Data served", "data": mydoc}, 200
 

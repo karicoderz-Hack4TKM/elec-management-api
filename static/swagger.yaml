@@ -352,7 +352,7 @@ paths:
 # GET Method
     get:
       summary: Fetch users data.
-      operationId: core-users-get
+      operationId: core-tariff-get
       description: >-
         Fetches tariff data from database.
       parameters:
@@ -427,6 +427,8 @@ paths:
 
       tags: [ CORE ]
 
+
+
   /core/consumption:
     summary: Core Consumption
     description: Core Modules for Consumption
@@ -434,7 +436,7 @@ paths:
     # GET Method
     get:
       summary: Fetch users data.
-      operationId: core-users-get
+      operationId: core-consumption-get
       description: >-
         Fetches consumption data from database.
       parameters:
@@ -453,6 +455,13 @@ paths:
           description: Failed to connect to Mongo DB
       tags: [ CORE ]
 
+
+
+
+
+
+
+
   /core/production:
     summary: Core Production
     description: Core Modules for Production
@@ -460,7 +469,7 @@ paths:
     # GET Method
     get:
       summary: Fetch users data.
-      operationId: core-users-get
+      operationId: core-production-get
       description: >-
         Fetches prouction data from database.
       parameters:
@@ -506,6 +515,9 @@ paths:
                 reason:
                   type: string
                   example: permanant data
+                userid:
+                  type: string
+                  example: { "userid": "HP01" }
                 start_date:
                   type: string
                   example: 09-09-1998
@@ -551,85 +563,6 @@ paths:
           description: Failed to connect to Mongo DB
 
       tags: [ CORE ]
-##DELETE Method
-#
-#    delete:
-#      summary: Deletes a user
-#      operationId: core-users-delete
-#      description: >-
-#        Deletes user data from database.
-#      parameters:
-#        - name: filter
-#          in: query
-#          description: Filter Query
-#          schema:
-#            type: string
-#      responses:
-#        '200':
-#          description: User Delete
-#
-#        '212':
-#          description: User Not Found
-#        '213':
-#          description: No User Available
-#        '211':
-#          description: Not found or bad request
-#        '210':
-#          description: Failed to connect to Mongo DB
-#        '401':
-#          description: Unauthorized User
-#      tags: [ MDM ]
-#
-#
-##PUT Method
-#
-#
-#    put:
-#      summary: Updates users data.
-#      operationId: core-users-put
-#      description: >-
-#        Updates users data into database.
-#      requestBody:
-#        required: true
-#        content:
-#          application/json:
-#            schema:
-#              type: object
-#              properties:
-#                _id:
-#                  type: string
-#                  example: 86f402d9-fd3a-40ca-82ea-214d816d1124
-#                email:
-#                  type: string
-#                  example: unknown@example.com
-#                password:
-#                  type: string
-#                  example: password
-#                username:
-#                  type: string
-#                  example: New User
-#                userRole:
-#                  type: string
-#                  example: RO101
-#                subDepartment:
-#                  type: string
-#                  example: CA
-#      responses:
-#        '200':
-#          description: User Data Updated
-#
-#        '211':
-#          description: User Data Not Updated
-#        '212':
-#          description: User Not Found
-#        '213':
-#          description: Not found or bad request
-#        '210':
-#          description: Failed to connect to Mongo DB
-#        '401':
-#          description: Unauthorized User
-#
-#      tags: [ MDM ]
 
 
 
