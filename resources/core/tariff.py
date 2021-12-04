@@ -35,13 +35,13 @@ class Tariff(Resource):
             try:
                 data = request.args.get("filter")
                 if data is None:
-                    x = list(selectCollection.find())
+                    x = list(selectCollection.find({},{"_id": 0}))
                     connect.close()
                     return {"code": 200, "message": "Data served", "data": x},200
 
                 else:
                     data = json.loads(data)
-                    mydoc = list(selectCollection.find(data))
+                    mydoc = list(selectCollection.find(data, {"_id": 0}))
                     connect.close()
                     return {"code":200, "message": "Data served", "data": mydoc},200
 
