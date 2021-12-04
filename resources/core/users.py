@@ -20,7 +20,7 @@ class Users(Resource):
         y = tokenData['userDetails']
         connect = pymongo.MongoClient(current_app.config["MONGO_URL"])
         selectDb = connect[current_app.config["DB_NAME"]]
-        selectCollection = selectDb["providers"]
+        selectCollection = selectDb["users"]
         try:
             data = request.get_json()
             mydoc = selectCollection.find_one({"email": data["email"]})
