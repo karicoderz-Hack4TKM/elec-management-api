@@ -82,5 +82,9 @@ api.add_resource(electricvehicle.ElectricVehicle,'/core/electricvehicle')
 import resources.core.bill as bill
 api.add_resource(bill.Bill,'/core/bill')
 
+#allvalue
+import resources.core.substation as substation
+api.add_resource(substation.Allview,'/core/allview')
+
 if __name__ == '__main__':
     app.run()

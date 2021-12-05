@@ -667,6 +667,27 @@ paths:
       tags: [ CORE ]
 
 
+  /core/allview:
+    summary: CORE-allview
+    description: CORE Modules for allview
+
+    # GET Method
+    get:
+      summary: Fetch individual data.
+      operationId: core-allvales-get
+      description: >-
+        Fetches view data from database.
+      responses:
+        '200':
+          description: Data Served
+        '400':
+          description: Not found or bad request
+        '500':
+          description: Failed to connect to Mongo DB
+
+      tags: [ CORE ]
+
+
 
 
 
