@@ -25,9 +25,7 @@ class Produce(Resource):
         except Exception as e:
             return {"code": 210, "message": "Failed to connect to Mongo DB : " + str(e)},210
 
-    @auth.verifyToken
-    def get(self, **tokenData):
-        y = tokenData['userDetails']
+    def get(self):
         try:
             connect = pymongo.MongoClient(current_app.config["MONGO_URL"])
             selectDb = connect[current_app.config["DB_NAME"]]
