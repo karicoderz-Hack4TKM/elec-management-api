@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 
 
 class Produce(Resource):
-    def put(self, **tokenData):
+    def put(self):
         try:
             connect = pymongo.MongoClient(current_app.config["MONGO_URL"])
             selectDb = connect[current_app.config["DB_NAME"]]
@@ -19,7 +19,6 @@ class Produce(Resource):
                     newvalues = {"$set": data}
                     x=selectCollection.update_one(mydoc, newvalues)
                 if x.modified_count:
-                    print(1)
                     return {"code": 201, "message": "Generator Successfully Started"},201
             except Exception as e:
                 return {"code": 211, "message": "Generator not Started : " + str(e)},211

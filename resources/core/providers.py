@@ -9,7 +9,7 @@ import jwt
 import datetime
 
 class Providers(Resource):
-    def post(self, **tokenData):
+    def post(self):
         request_data = request.get_json()
         email = request_data["email"]
         password = request_data["password"]

@@ -14,16 +14,8 @@ class Config(object):
     SECRET_KEY_FOR_EMAIL = "hai"
 
     #email config
-    EMAIL_USERNAME = "tkmstockmanagement@gmail.com"
-    EMAIL_PASSWORD = "tkmce1234"
-
-    #user roles
-    RO_ADMIN = "RO100"
-    RO_LAB_IN_CHARGE = "RO101"
-
-    #reset page url
-    RESET_URL = "http://localhost:4200/reset?token="
-    FORGOT ="http://localhost:4200/forgot"
+    EMAIL_USERNAME = "elecmanagement123@gmail.com"
+    EMAIL_PASSWORD = "Elec@123"
 
 class DevelopmentConfig(Config):
     DEBUG = True
@@ -38,16 +30,3 @@ class ProductionConfig(Config):
     MONGO_URL = "mongodb://root:example@mongo:27017"
     DEBUG = False
     TESTING = False
-
-# other flask enironment variables
-# FLASK_ENV - Controls the environment.
-# FLASK_DEBUG - Enables debug mode.
-# FLASK_RUN_EXTRA_FILES - A list of files that will be watched by the reloader in addition to the Python modules.
-# FLASK_RUN_HOST - The host you want to bind your app to.
-# FLASK_RUN_PORT - The port you want to use.
-# FLASK_RUN_CERT - A certificate file for so your app can be run with HTTPS.
-# FLASK_RUN_KEY - The key file for your cert.
-
-# .env reference
-# https://prettyprinted.com/tutorials/automatically_load_environment_variables_in_flask
-
