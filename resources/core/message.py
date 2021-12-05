@@ -31,7 +31,6 @@ class Send(Resource):
                                     <title>Alert Email</title>
                                 </head>
                                 <body>
-                                <img src="https://drive.google.com/file/d/1KsDNzZeBxnLgIQM8hb96TrO1CEaqQ3aK/view?usp=drivesdk">
                                     <h3>"""
 
             html2 = """</h3>
@@ -42,7 +41,7 @@ class Send(Resource):
 
             today = date.today()
             html_content = html1 + str(today) + html2 + data["message"] + html3
-            response = emailservice.EmailSend().sendEmailWithHtml(subject=Subject,reciever_email="ajohn3503@gmail.com",html=html_content)
+            response = emailservice.EmailSend().sendEmailWithHtml(subject=Subject,reciever_email="@gmail.com",html=html_content)
             return {"code": 201, "message": "email  is sent Successfully "}, 201
         except Exception as e:
             return {"code": 213, "message": " not send: " + str(e)}, 213
