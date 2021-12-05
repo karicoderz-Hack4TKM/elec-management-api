@@ -31,7 +31,7 @@ class Send(Resource):
                                     <title>Alert Email</title>
                                 </head>
                                 <body>
-                                <img src="https://www.canva.com/design/DAExos4w-uM/fR3_F5gvrVXTwdZuRrNh1g/view?utm_content=DAExos4w-uM&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton">
+                                <img src="https://drive.google.com/file/d/1KsDNzZeBxnLgIQM8hb96TrO1CEaqQ3aK/view?usp=drivesdk">
                                     <h3>"""
 
             html2 = """</h3>
