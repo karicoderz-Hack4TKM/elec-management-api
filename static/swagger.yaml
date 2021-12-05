@@ -493,7 +493,7 @@ paths:
     summary: Core Excess
     description: Core Modules for Excess
 
-    # GET Method
+    # POST Method
     post:
       summary: Insert excess data.
       operationId: core-excess-post
@@ -594,7 +594,74 @@ paths:
 
 
 
+  /core/electricvehicle:
+      summary: Core Electricvehicle
+      description: Core Modules for Electricvehicle
 
+      # POST Method
+      post:
+        summary: Insert electricvehicle  data.
+        operationId: core-electricvehicle-post
+        description: >-
+          Inserts electricvehicle data into database.
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: permenant
+                  status:
+                    type: boolean
+                    example: True
+                  userid:
+                    type: string
+                    example: HP01
+                  start_date:
+                    type: string
+                  model:
+                    type: string
+
+
+        responses:
+          '200':
+            description: Electricvehicle data created
+          '201':
+            description: Electricvehicle data  is not create
+          '500':
+            description: Failed to connect to Mongo DB
+        tags: [ CORE ]
+
+
+  /core/bill:
+    summary: CORE-bill
+    description: CORE Modules for bill
+
+    # GET Method
+    get:
+      summary: Fetch individual data.
+      operationId: core-individual-get
+      description: >-
+        Fetches individual data from database.
+      parameters:
+        - name: filter
+          in: query
+          description: Filter Query
+          schema:
+            type: string
+            example: { "userid": "HD02" }
+      responses:
+        '200':
+          description: Data Served
+        '400':
+          description: Not found or bad request
+        '500':
+          description: Failed to connect to Mongo DB
+
+      tags: [ CORE ]
 
 
 
