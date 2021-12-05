@@ -15,12 +15,10 @@ class Produce(Resource):
             selectCollection = selectDb["generator"]
 
             try:
-                hour = 7
                 data = request.get_json()
-                data2=data
-                data["endTime"] =  data["startTime"]+ timedelta(hours=hour)
-                new = {"$set",data}
-                y = selectCollection.update_one(data2,new)
+                doc = selectCollection.find_one({"_id": data["_id":data["_id"]]})
+                new = {"$set":data}
+                y = selectCollection.update_one(doc,new)
                 connect.close()
                 if y.updated_id:
                     return {"code": 201, "message": "Generator Successfully Started"},201
