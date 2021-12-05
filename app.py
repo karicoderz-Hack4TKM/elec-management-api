@@ -69,5 +69,18 @@ api.add_resource(excess.Excess,'/core/excess')
 import resources.core.providers as providers
 api.add_resource(providers.Providers,'/core/providers')
 
+#predictor
+import resources.core.predictor1 as predict
+api.add_resource(predict.LaneAverage,'/core/predict')
+
+#electric_vehicle
+import resources.core.electricvehicle as electricvehicle
+api.add_resource(electricvehicle.ElectricVehicle,'/core/electricvehicle')
+
+
+#bill
+import resources.core.bill as bill
+api.add_resource(bill.Bill,'/core/bill')
+
 if __name__ == '__main__':
     app.run()
