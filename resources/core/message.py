@@ -41,7 +41,7 @@ class Send(Resource):
 
             today = date.today()
             html_content = html1 + str(today) + html2 + data["message"] + html3
-            response = emailservice.EmailSend().sendEmailWithHtml(subject=Subject,reciever_email="@gmail.com",html=html_content)
+            response = emailservice.EmailSend().sendEmailWithHtml(subject=Subject,reciever_email="nithinsurendran321@gmail.com",html=html_content)
             return {"code": 201, "message": "email  is sent Successfully "}, 201
         except Exception as e:
             return {"code": 213, "message": " not send: " + str(e)}, 213
