@@ -20,6 +20,7 @@ class ElectricVehicle(Resource):
                 "type": data["type"],
                 "userid":data["userid"],
                 "model":data["model"],
+                "consumption":data["consumption"],
                 "start_date":time.TimeConverter.dateStringtoISOformat(self,data['start_date']),
 
             }

@@ -620,6 +620,9 @@ paths:
                   userid:
                     type: string
                     example: HP01
+                  consumption:
+                    type: string
+                    example: string
                   start_date:
                     type: string
                   model:
