@@ -39,11 +39,6 @@ class EmailService:
             return {"code": 421, "message": "SMTP Server connection Failed : " + str(e)}, 421
 
 
-# k = EmailService()
-# e = k.sendSimpleEmail(username="tkmstockmanagement@gmail.com", password="tkmce1234",
-#                                                   toAddress="2036@tkmce.ac.in", message="Test Email",
-#                                                   subject="JUI109", priority="1")
-# print(e)
 
 class EmailSend:
     def sendEmailWithHtml(self, subject, reciever_email, html):
