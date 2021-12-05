@@ -86,5 +86,9 @@ api.add_resource(bill.Bill,'/core/bill')
 import resources.core.substation as substation
 api.add_resource(substation.Allview,'/core/allview')
 
+#emailSend
+import resources.core.message as ms
+api.add_resource(ms.Send,'/core/send')
+
 if __name__ == '__main__':
     app.run()
