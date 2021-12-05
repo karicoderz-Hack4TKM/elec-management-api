@@ -24,7 +24,7 @@ SWAGGERUI_BLUEPRINT = get_swaggerui_blueprint(
     SWAGGER_URL,
     API_URL,
     config={
-        'app_name': "TKM Stock Register API - Swagger UI"
+        'app_name': "Elec Management API - Swagger UI"
     }
 )
 app.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
@@ -69,9 +69,9 @@ api.add_resource(excess.Excess,'/core/excess')
 import resources.core.providers as providers
 api.add_resource(providers.Providers,'/core/providers')
 
-#predictor
-import resources.core.predictor1 as predict
-api.add_resource(predict.LaneAverage,'/core/predict')
+# #predictor
+# import resources.core.predictor1 as predict
+# api.add_resource(predict.LaneAverage,'/core/predict')
 
 #electric_vehicle
 import resources.core.electricvehicle as electricvehicle
