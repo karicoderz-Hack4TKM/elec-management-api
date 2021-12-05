@@ -566,10 +566,10 @@ paths:
 
   # POST Method
     post:
-          summary: Insert providers data.
+          summary:  providerslogin.
           operationId: core-providers-post
           description: >-
-            Inserts provider data into database.
+            login providers
           requestBody:
             required: true
             content:
@@ -583,14 +583,11 @@ paths:
                     password:
                       type: string
                       example: password
-                    usertype:
-                      type: string
-                      example: admin
           responses:
             '200':
-              description: User data created
+              description: User login successful
             '201':
-              description: User data  is not create
+              description: User login not successful
             '500':
               description: Failed to connect to Mongo DB
 
