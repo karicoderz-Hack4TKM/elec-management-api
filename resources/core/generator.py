@@ -7,20 +7,19 @@ from datetime import datetime, timedelta
 
 
 class Produce(Resource):
-    @auth.verifyToken
     def put(self, **tokenData):
         try:
             connect = pymongo.MongoClient(current_app.config["MONGO_URL"])
             selectDb = connect[current_app.config["DB_NAME"]]
             selectCollection = selectDb["generator"]
-
             try:
                 data = request.get_json()
-                doc = selectCollection.find_one({"_id": data["_id":data["_id"]]})
-                new = {"$set":data}
-                y = selectCollection.update_one(doc,new)
-                connect.close()
-                if y.updated_id:
+                mydoc = selectCollection.find_one(data["_id"])
+                if mydoc:
+                    newvalues = {"$set": data}
+                    x=selectCollection.update_one(mydoc, newvalues)
+                if x.modified_count:
+                    print(1)
                     return {"code": 201, "message": "Generator Successfully Started"},201
             except Exception as e:
                 return {"code": 211, "message": "Generator not Started : " + str(e)},211
