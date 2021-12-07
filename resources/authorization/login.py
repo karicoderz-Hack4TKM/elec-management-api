@@ -35,6 +35,7 @@ class UserLogin(Resource):
                     pr = {
                         "_id": data["_id"],
                         "email": data["email"],
+                        "name": data["name"],
                         "password": data["password"],
                         "lanenumber": data["lanenumber"],
                         "usertype": data["usertype"]
